@@ -1,0 +1,38 @@
+﻿@page "/northwind"
+
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <select class="form-control" @onchange="OnSelectChange">
+            @foreach (var category in _categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </div>
+</div>
+
+@if (_products.Any())
+{
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <table class="table table-hover table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Units In Stock</th>
+                    <th>Unit Price</th>
+                    <th>Quantity per Unit</th>
+                </tr>
+                @foreach (var product in _products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.UnitsInStock</td>
+                        <td>@product.UnitPrice.ToString("C")</td>
+                        <td>@product.QuantityPerUnit</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
